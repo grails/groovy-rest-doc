@@ -5,9 +5,20 @@ DSL.
 
 == Installation
 
+Add a new Maven Url entry to your dependencies block:
+
+[source, groovy]
+----
+repositories {
+    mavenLocal()
+    maven { url "https://repo.grails.org/grails/core" }
+    maven { url 'http://dl.bintray.com/sdelamo/libs' }
+}
+----
+
 Add a Gradle dependency:
 
-`testCompile 'org.grails:rest-docs:0.1'`
+`testCompile 'org.grails:rest-docs:0.2'`
 
 == Usage
 

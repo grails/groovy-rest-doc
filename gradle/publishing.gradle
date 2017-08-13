@@ -48,18 +48,18 @@ publishing {
 
             pom.withXml {
                 def Node root = asNode()
-                root.appendNode('name', 'Groovy Library to interact with AWS SES')
-                root.appendNode('description', project.project_description)
-                root.appendNode('url', project.project_url)
+                root.appendNode('name', project.name)
+                root.appendNode('description', project.projectDescription)
+                root.appendNode('url', project.projectUrl)
 
                 def issues = root.appendNode( 'issueManagement' )
                 issues.appendNode( 'system', 'github' )
-                issues.appendNode( 'url', project.project_issues_url )
+                issues.appendNode( 'url', project.projectIssuesUrl )
 
                 def scm = root.appendNode( 'scm' )
-                scm.appendNode( 'url', project.project_scm )
-                scm.appendNode( 'connection', project.project_connection)
-                scm.appendNode( 'developerConnection', project.project_dev_connection )
+                scm.appendNode( 'url', project.projectScm )
+                scm.appendNode( 'connection', project.projectConnection)
+                scm.appendNode( 'developerConnection', project.projectDevConnection )
 
                 def license = root.appendNode( 'licenses' ).appendNode( 'license' );
                 license.appendNode( 'name', 'The Apache Software License, Version 2.0' )
@@ -67,10 +67,10 @@ publishing {
                 license.appendNode( 'distribution', 'repo' )
 
                 def dev = root.appendNode( 'developers' ).appendNode( 'developer' );
-                dev.appendNode( 'id', project.project_vendor )
-                dev.appendNode( 'name', project.project_vendor_name )
-                dev.appendNode( 'organization', 'Groovy Calamari' )
-                dev.appendNode( 'organizationUrl', 'http://groovycalamari.com' )
+                dev.appendNode( 'id', project.projectVendor )
+                dev.appendNode( 'name', project.projectVendorName )
+                dev.appendNode( 'organization', 'Grails' )
+                dev.appendNode( 'organizationUrl', 'http://grails.org' )
             }
         }
     }
