@@ -1,0 +1,38 @@
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.0"
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+    }
+}
+
+group "org.grails"
+
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+apply from: "$rootDir/gradle/publishing.gradle"
+apply from: "$rootDir/gradle/credentials.gradle"
+apply from: "$rootDir/gradle/bintray.gradle"
+
+dependencies {
+    compile "org.codehaus.groovy:groovy:$groovyVersion"
+    compile "org.codehaus.groovy:groovy-json:$groovyVersion"
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4', {
+        exclude module : 'groovy-all'
+    }
+}
+
+//distZip {
+//    from project(':docs').asciidoctor, {
+//        into "${project.name}-${version}"
+//    }
+//}
+//distTar {
+//    from project(':docs').asciidoctor, {
+//        into "${project.name}-${version}"
+//    }
+//}

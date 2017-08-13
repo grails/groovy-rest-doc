@@ -1,0 +1,35 @@
+= Groovy REST Doc
+
+Groovy REST Docs helps you to document REST APis. It helps you generate Asciidoctor snippets to document your API by using an Groovy
+DSL.
+
+== Installation
+
+Add a Gradle dependency:
+
+`testCompile 'org.grails:rest-docs:0.1'`
+
+== Usage
+
+The first step is to create classes to describe the endpoint under test. Extend `org.grails.restdoc.RestEndpoint`
+
+[source, groovy]
+----
+include::../../../../examples/grails-docs-app/src/integration-test/groovy/demo/ApiLoginEndpoint.groovy[]
+----
+
+Then, you instantiate `RestDoc` and call the `doc` method as illustrated in the next functional test.
+
+[source, groovy]
+----
+include::../../../../examples/grails-docs-app/src/integration-test/groovy/demo/ApiLoginSpec.groovy[]
+----
+
+== Sample API Documentation
+
+Using the Asciidoctor Gradle plugin is easy to transform the generated API into Documentation in HTML5, PDF or epub.
+
+https://grails.github.io/grooy-rest-docs/sample/[Example of the Generated Docs]
+
+https://github.com/grails/grooy-rest-docs/tree/master/examples/grails-docs-app/[Sample Grails 3 App Using Groovy Rest Docs]
+
