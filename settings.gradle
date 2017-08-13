@@ -1,8 +1,0 @@
-include 'docs'
-include 'lib'
-include 'examples/grails-docs-app'
-
-rootProject.name = 'groovy-rest-doc'
-
-findProject(':lib').name = 'rest-doc'
-
