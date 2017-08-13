@@ -1,6 +1,6 @@
 = Groovy REST Doc
 
-Groovy REST Docs helps you to document REST APis. It helps you generate Asciidoctor snippets to document your API by using an Groovy
+Groovy REST Doc helps you to document REST APis. It helps you generate http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc] snippets to document your API by using an Groovy
 DSL.
 
 == Installation
@@ -10,8 +10,6 @@ Add a new Maven Url entry to your dependencies block:
 [source, groovy]
 ----
 repositories {
-    mavenLocal()
-    maven { url "https://repo.grails.org/grails/core" }
     maven { url 'http://dl.bintray.com/sdelamo/libs' }
 }
 ----
@@ -22,6 +20,13 @@ Add a Gradle dependency:
 
 == Usage
 
+In order to document your REST endpoint you need to:
+
+* Declare your endpoints using classes extending `org.grails.restdoc.RestEndpoint`
+* Use those endpoint declarations in your functional tests. While you test your API, you generate documenation.
+
+TIP: The next code snipeets display Grails 3 functional tests. However, You can use groovy-rest-doc with any framework.
+
 The first step is to create classes to describe the endpoint under test. Extend `org.grails.restdoc.RestEndpoint`
 
 [source, groovy]
@@ -29,18 +34,37 @@ The first step is to create classes to describe the endpoint under test. Extend 
 include::../../../../examples/grails-docs-app/src/integration-test/groovy/demo/ApiLoginEndpoint.groovy[]
 ----
 
-Then, you instantiate `RestDoc` and call the `doc` method as illustrated in the next functional test.
+Then, you instantiate `RestDoc` and call the `doc` method as illustrated in the next Grails 3 functional test.
 
 [source, groovy]
 ----
 include::../../../../examples/grails-docs-app/src/integration-test/groovy/demo/ApiLoginSpec.groovy[]
 ----
 
+For any endpoin understand you can document different interactions ( successful calls, calls returning errors).
+
+When you run your tests, http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc] snippets which describe your API
+are generated at `src/docs/asciidoc/generated`.
+
+The file `src/docs/asciidoc/generated/index.adoc` lists every endpoint documented in your tests.
+
+You can change the folder where the snippets get generated at:
+
+[source, groovy]
+----
+RestDoc restDoc = new RestDoc(endpoint)
+restDoc.generatedSnippetsPath = 'build/generated'
+restDoc.doc {
+...
+..
+.
+}
+----
+
 == Sample API Documentation
 
-Using the Asciidoctor Gradle plugin is easy to transform the generated API into Documentation in HTML5, PDF or epub.
+Using the asciidoctor gradle plugin[Asciidoctor Gradle plugin] is easy to transform the generated API into Documentation in HTML5, PDF or epub.
 
 https://grails.github.io/groovy-rest-doc/sample/[Example of the Generated Docs]
 
 https://github.com/grails/groovy-rest-doc/tree/master/examples/grails-docs-app/[Sample Grails 3 App Using Groovy Rest Docs]
-
