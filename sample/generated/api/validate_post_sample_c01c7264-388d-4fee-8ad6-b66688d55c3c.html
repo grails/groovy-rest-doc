@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
-<title>/oauth/access_token POST</title>
+<title>Endpoint returns 200 if the access token is valid</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -512,125 +512,28 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>/oauth/access_token POST</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#headers">Headers</a></li>
-<li><a href="#params">Params</a></li>
-<li><a href="#samples">Samples</a>
 <ul class="sectlevel2">
-<li><a href="#successful-access-token-refresh">Successful access token refresh</a></li>
-<li><a href="#return-401-if-the-supplied-accesstoken-is-not-valid">Return 401 if the supplied accessToken is not valid</a></li>
-</ul>
-</li>
+<li><a href="#endpoint-returns-200-if-the-access-token-is-valid">Endpoint returns 200 if the access token is valid</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/oauth/access_token</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="headers">Headers</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Header Name</th>
-<th class="tableblock halign-left valign-top">HeaderValue</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accept</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">application/json</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Content-Type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">application/x-www-form-urlencoded</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="params">Params</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Required</th>
-<th class="tableblock halign-left valign-top">Schema</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FORM_URL_ENCODED</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">grant_type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">YES</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FORM_URL_ENCODED</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">refresh_token</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">YES</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="samples">Samples</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="successful-access-token-refresh">Successful access token refresh</h3>
+<h3 id="endpoint-returns-200-if-the-access-token-is-valid">Endpoint returns 200 if the access token is valid</h3>
 <div class="paragraph">
 <p><strong>Request</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/oauth/access_token&quot; \
+<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/api/validate&quot; \
      -H &quot;Accept: application/json&quot; \
-     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
-     --data-urlencode &quot;grant_type=refresh_token&quot; \
-     --data-urlencode &quot;refresh_token=eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImlhdCI6MTUwMjY0NTQyM30.sL_5cfr5J9ZDw49qnOarqhKW1YtErq1-d3P9k021rDg&quot;</code></pre>
+     -H &quot;Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY0OTAxOSwiaWF0IjoxNTAyNjQ1NDE5fQ.dd1h0D4IGj1LGfW34FwnyYoW-XLGQpsksEl86GE7iBg&quot; \
+     -d $'{
+    &quot;username&quot;: &quot;sherlock&quot;,
+    &quot;password&quot;: &quot;elementary&quot;
+}'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -640,47 +543,22 @@ table.CodeRay td.code>pre{padding:0}
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">200
 
-[access_token:eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY0OTAyMywiaWF0IjoxNTAyNjQ1NDIzfQ.INq_InFJdkB6UUP08QhnXntRFOWgf8v-p4dYjDS7BlY, refresh_token:eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImlhdCI6MTUwMjY0NTQyM30.sL_5cfr5J9ZDw49qnOarqhKW1YtErq1-d3P9k021rDg, roles:[ROLE_BOSS], token_type:Bearer, expires_in:3600, username:sherlock]</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="return-401-if-the-supplied-accesstoken-is-not-valid">Return 401 if the supplied accessToken is not valid</h3>
-<div class="paragraph">
-<p><strong>Request</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/oauth/access_token&quot; \
-     -H &quot;Accept: application/json&quot; \
-     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
-     --data-urlencode &quot;grant_type=refresh_token&quot; \
-     --data-urlencode &quot;refresh_token=wrong refresh token&quot;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Response</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">403
-
 {
-    &quot;path&quot;: &quot;/oauth/access_token&quot;,
-    &quot;error&quot;: &quot;Forbidden&quot;,
-    &quot;message&quot;: &quot;No message available&quot;,
-    &quot;timestamp&quot;: 1502645423537,
-    &quot;status&quot;: 403
+    &quot;access_token&quot;: &quot;eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY0OTAxOSwiaWF0IjoxNTAyNjQ1NDE5fQ.dd1h0D4IGj1LGfW34FwnyYoW-XLGQpsksEl86GE7iBg&quot;,
+    &quot;roles&quot;: [
+        &quot;ROLE_BOSS&quot;
+    ],
+    &quot;token_type&quot;: &quot;Bearer&quot;,
+    &quot;expires_in&quot;: 3599,
+    &quot;username&quot;: &quot;sherlock&quot;
 }</code></pre>
-</div>
-</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-13 17:30:23 UTC
+Last updated 2017-08-13 17:30:19 UTC
 </div>
 </div>
 </body>
