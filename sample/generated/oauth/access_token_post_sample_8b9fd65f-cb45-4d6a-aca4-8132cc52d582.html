@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
-<title>/api/validate POST</title>
+<title>Successful access token refresh</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -512,114 +512,26 @@ table.CodeRay td.code>pre{padding:0}
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>/api/validate POST</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#headers">Headers</a></li>
-<li><a href="#samples">Samples</a>
 <ul class="sectlevel2">
-<li><a href="#return-401-if-the-user-supplies-a-wrong-accesstoken">Return 401 if the user supplies a wrong accessToken</a></li>
-<li><a href="#endpoint-returns-200-if-the-access-token-is-valid">Endpoint returns 200 if the access token is valid</a></li>
-</ul>
-</li>
+<li><a href="#successful-access-token-refresh">Successful access token refresh</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Method</th>
-<th class="tableblock halign-left valign-top">URL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/api/validate</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="headers">Headers</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Header Name</th>
-<th class="tableblock halign-left valign-top">HeaderValue</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Accept</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">application/json</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Authorization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bearer XXXXXXX</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="samples">Samples</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="return-401-if-the-user-supplies-a-wrong-accesstoken">Return 401 if the user supplies a wrong accessToken</h3>
+<h3 id="successful-access-token-refresh">Successful access token refresh</h3>
 <div class="paragraph">
 <p><strong>Request</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/api/validate&quot; \
+<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/oauth/access_token&quot; \
      -H &quot;Accept: application/json&quot; \
-     -H &quot;Authorization: Bearer XXXXXXX&quot; \
-     -d $'{
-    &quot;username&quot;: &quot;sherlock&quot;,
-    &quot;password&quot;: &quot;elementary&quot;
-}'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Response</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">401
-
-null</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="endpoint-returns-200-if-the-access-token-is-valid">Endpoint returns 200 if the access token is valid</h3>
-<div class="paragraph">
-<p><strong>Request</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash">curl -X &quot;POST&quot; &quot;http://localhost:8080/api/validate&quot; \
-     -H &quot;Accept: application/json&quot; \
-     -H &quot;Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY1MDQ5NCwiaWF0IjoxNTAyNjQ2ODk0fQ.tom8-ryC7lpoWR0GgJ9lgMFWfTqnuFT1jNS3JyWdlB8&quot; \
-     -d $'{
-    &quot;username&quot;: &quot;sherlock&quot;,
-    &quot;password&quot;: &quot;elementary&quot;
-}'</code></pre>
+     -H &quot;Content-Type: application/x-www-form-urlencoded&quot; \
+     --data-urlencode &quot;grant_type=refresh_token&quot; \
+     --data-urlencode &quot;refresh_token=eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImlhdCI6MTUwMjY0Njg5Nn0.4AVmq5FsbE2_3VzYp8Zworzaec9ykSpAIkNVqTPo0mI&quot;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -629,24 +541,14 @@ null</code></pre>
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="bash">200
 
-{
-    &quot;access_token&quot;: &quot;eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY1MDQ5NCwiaWF0IjoxNTAyNjQ2ODk0fQ.tom8-ryC7lpoWR0GgJ9lgMFWfTqnuFT1jNS3JyWdlB8&quot;,
-    &quot;roles&quot;: [
-        &quot;ROLE_BOSS&quot;
-    ],
-    &quot;token_type&quot;: &quot;Bearer&quot;,
-    &quot;expires_in&quot;: 3600,
-    &quot;username&quot;: &quot;sherlock&quot;
-}</code></pre>
-</div>
-</div>
+[access_token:eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImV4cCI6MTUwMjY1MDQ5NiwiaWF0IjoxNTAyNjQ2ODk2fQ.9BXk_Mxs5-l-Xg0sR8_WQ5DOpZrgC8b3AJDLtbVmWUc, refresh_token:eyJhbGciOiJIUzI1NiJ9.eyJwcmluY2lwYWwiOiJINHNJQUFBQUFBQUFBSlZTUFVcL2NRQlI4dmh5Q0NJbVBTSW1VQXBwQUZcL21rcEx3cWgwZ2taSEVJY3cxSW9EMzdZUmJXdTJaM0RYY051aW9wS0loSWtKQm9LZmtuU1pNZkVJV0NscG8yYncySER4ckVWdmJiOGN5OEdWOWN3NURSOERIUmpBdmpaeUpQdVBSTnBybE1ERWE1NXJicjV3WjFqTFpBZkNtQUxackE3ZkVxNEFWUTRiR0ZWOEUyMjJNMXdXUlNhN2EzTWJMMWpvWVBTaWQzakp1YXBiaXY5STVcL3p4MHBqUThFU21ydnZBTERxekRKb2tqbDBpNHFPZFwvSnVNWjRGU2JLV2FDaUhUZDZIZEVOU3N1Wk1JUFFZWlNzTFRBT1lKVGxka3VSS2tkallmeldiRzY1cUlWbzZ3R01aTXdZY3Zkb2s5QTY2KzdlMlpTMHdTNGNRTFdUZVhRb3Uxa0g5UjJQUDZlRW9LMjVrbWFtSlZNVjgwM3V4SW1cL04zWDg1K2lzMTZvQVVDYnZuXC82bW5MOXRRT1wvWCtzMTBFYlFYV1hnellMMkUxVHNadVprc21WYzBPdVdcL3Awc1wvVHE2XC9yYjBnWllmNFwvUHcrWmo3ZEpkZWRVMm5HTkxOcW9DT2kzYSs2WnlKdlBFM2ViNkhyaHp6TkJOSWZKUzNHOXhJbE1hMWIxVXIwODdid2Nya1p6RzgwbW1IbzNrYk1GbXBCOVpQdVdMRzI2OHNQRkxWMWVQWDk5OUc3ZjhTeEFFTjdUT1JJcVUrVW9NVThiYVArZW5FeU5mcno4ckRZb2Y4XC9cL3dmNlQ5M3RFd01BQUE9PSIsInN1YiI6InNoZXJsb2NrIiwicm9sZXMiOlsiUk9MRV9CT1NTIl0sImlhdCI6MTUwMjY0Njg5Nn0.4AVmq5FsbE2_3VzYp8Zworzaec9ykSpAIkNVqTPo0mI, roles:[ROLE_BOSS], token_type:Bearer, expires_in:3600, username:sherlock]</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-13 17:54:54 UTC
+Last updated 2017-08-13 17:54:56 UTC
 </div>
 </div>
 </body>
