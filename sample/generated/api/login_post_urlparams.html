@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.5">
-<title>Groovy REST Doc</title>
+<title>Untitled</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -510,218 +510,48 @@ table.CodeRay td.code>pre{padding:0}
 .CodeRay .head .head{color:#f4f}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>Groovy REST Doc</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-<li><a href="#sample-api-documentation">Sample API Documentation</a></li>
-</ul>
-</div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Groovy REST Docs helps you to document REST APis. It helps you generate Asciidoctor snippets to document your API by using an Groovy
-DSL.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="installation">Installation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Add a new Maven Url entry to your dependencies block:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy">repositories {
-    mavenLocal()
-    maven { url <span class="string"><span class="delimiter">&quot;</span><span class="content">https://repo.grails.org/grails/core</span><span class="delimiter">&quot;</span></span> }
-    maven { url <span class="string"><span class="delimiter">'</span><span class="content">http://dl.bintray.com/sdelamo/libs</span><span class="delimiter">'</span></span> }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add a Gradle dependency:</p>
-</div>
-<div class="paragraph">
-<p><code>testCompile 'org.grails:rest-docs:0.2'</code></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="usage">Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The first step is to create classes to describe the endpoint under test. Extend <code>org.grails.restdoc.RestEndpoint</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> demo
-
-<span class="keyword">import</span> <span class="include">groovy.transform.CompileStatic</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.HeaderDoc</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.HttpVerb</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.ParamDoc</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.ParamType</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.RestEndpoint</span>
-
-<span class="annotation">@CompileStatic</span>
-<span class="type">class</span> <span class="class">ApiLoginEndpoint</span> <span class="directive">extends</span> RestEndpoint {
-    <span class="predefined-type">List</span>&lt;<span class="predefined-type">String</span>&gt; authorizationRoles = <span class="type">[]</span>
-    HttpVerb httpVerb = HttpVerb.POST
-    <span class="predefined-type">String</span> path = <span class="string"><span class="delimiter">'</span><span class="content">/api/login</span><span class="delimiter">'</span></span>
-    <span class="predefined-type">List</span>&lt;HeaderDoc&gt; headers = [
-                HeaderDoc.builder()
-                        .name(<span class="string"><span class="delimiter">'</span><span class="content">Accept</span><span class="delimiter">'</span></span>)
-                        .value(<span class="string"><span class="delimiter">'</span><span class="content">application/json</span><span class="delimiter">'</span></span>)
-                        .build(),
-                HeaderDoc.builder()
-                        .name(<span class="string"><span class="delimiter">'</span><span class="content">Content-Type</span><span class="delimiter">'</span></span>)
-                        .value(<span class="string"><span class="delimiter">'</span><span class="content">application/json</span><span class="delimiter">'</span></span>)
-                        .build()
-        ]
-
-    <span class="predefined-type">List</span>&lt;ParamDoc&gt; params = [
-                ParamDoc.builder()
-                        .name(<span class="string"><span class="delimiter">'</span><span class="content">username</span><span class="delimiter">'</span></span>)
-                        .type(ParamType.JSON)
-                        .required(<span class="predefined-constant">true</span>)
-                        .schema(<span class="predefined-type">String</span>.simpleName)
-                        .build(),
-
-                ParamDoc.builder()
-                        .name(<span class="string"><span class="delimiter">'</span><span class="content">password</span><span class="delimiter">'</span></span>)
-                        .type(ParamType.JSON)
-                        .required(<span class="predefined-constant">true</span>)
-                        .schema(<span class="predefined-type">String</span>.simpleName)
-                        .description(<span class="string"><span class="delimiter">'</span><span class="content">Plain text password</span><span class="delimiter">'</span></span>)
-                        .build(),
-        ]
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then, you instantiate <code>RestDoc</code> and call the <code>doc</code> method as illustrated in the next functional test.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">package</span> demo
-
-<span class="keyword">import</span> <span class="include">grails.plugins.rest.client.RestBuilder</span>
-<span class="keyword">import</span> <span class="include">grails.testing.mixin.integration.Integration</span>
-<span class="keyword">import</span> <span class="include">groovy.json.JsonOutput</span>
-<span class="keyword">import</span> <span class="include">org.grails.restdoc.RestDoc</span>
-<span class="keyword">import</span> <span class="include">spock.lang.Shared</span>
-<span class="keyword">import</span> <span class="include">spock.lang.Specification</span>
-<span class="keyword">import</span> <span class="include">spock.lang.Subject</span>
-
-<span class="annotation">@Integration</span>
-<span class="type">class</span> <span class="class">ApiLoginSpec</span> <span class="directive">extends</span> Specification {
-
-    <span class="annotation">@Shared</span>
-    <span class="annotation">@Subject</span>
-    ApiLoginEndpoint endpoint = <span class="keyword">new</span> ApiLoginEndpoint()
-
-    <span class="keyword">def</span> <span class="string"><span class="delimiter">&quot;</span><span class="content">test login</span><span class="delimiter">&quot;</span></span>() {
-        <span class="key">given</span>:
-        RestBuilder rest = <span class="keyword">new</span> RestBuilder()
-
-        <span class="key">when</span>: <span class="string"><span class="delimiter">'</span><span class="content">login with valid credentials</span><span class="delimiter">'</span></span>
-        <span class="predefined-type">Map</span> m = [<span class="key">username</span>: <span class="string"><span class="delimiter">'</span><span class="content">sherlock</span><span class="delimiter">'</span></span>, <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="content">elementary</span><span class="delimiter">'</span></span>]
-        <span class="keyword">def</span> resp = rest.post(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:</span><span class="inline"><span class="inline-delimiter">${</span>serverPort<span class="inline-delimiter">}</span></span><span class="inline"><span class="inline-delimiter">${</span>endpoint.path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>) {
-            accept(endpoint.accept())
-            contentType(endpoint.contentType())
-            json JsonOutput.toJson(m)
-        }
-
-        <span class="key">then</span>: <span class="string"><span class="delimiter">'</span><span class="content">server returns access token and roles</span><span class="delimiter">'</span></span>
-        resp.status == <span class="integer">200</span>
-        resp.json.roles.find { <span class="local-variable">it</span> == <span class="string"><span class="delimiter">'</span><span class="content">ROLE_BOSS</span><span class="delimiter">'</span></span> }
-        resp.json.access_token
-        resp.json.refresh_token
-
-        <span class="key">when</span>:
-        <span class="keyword">def</span> accessToken = resp.json.access_token
-
-        <span class="key">then</span>:
-        accessToken
-
-        <span class="key">when</span>:
-        <span class="keyword">new</span> RestDoc(endpoint).doc {
-            sample {
-                description <span class="string"><span class="delimiter">'</span><span class="content">Successful login</span><span class="delimiter">'</span></span>
-                request {
-                    headers endpoint.headersMap
-                    jsonBody JsonOutput.toJson(m)
-                }
-                response {
-                    statusCode resp.status
-                    json resp.json.toString()
-                }
-            }
-        }
-
-        <span class="key">then</span>:
-        noExceptionThrown()
-
-        <span class="key">when</span>: <span class="string"><span class="delimiter">'</span><span class="content">login with wrong password</span><span class="delimiter">'</span></span>
-        m = [<span class="key">username</span>: <span class="string"><span class="delimiter">'</span><span class="content">sherlock</span><span class="delimiter">'</span></span>, <span class="key">password</span>: <span class="string"><span class="delimiter">'</span><span class="content">wrongpassword</span><span class="delimiter">'</span></span>]
-        resp = rest.post(<span class="string"><span class="delimiter">&quot;</span><span class="content">http://localhost:</span><span class="inline"><span class="inline-delimiter">${</span>serverPort<span class="inline-delimiter">}</span></span><span class="inline"><span class="inline-delimiter">${</span>endpoint.path<span class="inline-delimiter">}</span></span><span class="delimiter">&quot;</span></span>) {
-            accept(endpoint.accept())
-            contentType(endpoint.contentType())
-            json JsonOutput.toJson(m)
-        }
-
-        <span class="key">then</span>: <span class="string"><span class="delimiter">'</span><span class="content">server returns unauthorized</span><span class="delimiter">'</span></span>
-        resp.status == <span class="integer">401</span>
-
-        <span class="key">when</span>:
-        <span class="keyword">new</span> RestDoc(endpoint).doc {
-            sample {
-                description <span class="string"><span class="delimiter">'</span><span class="content">login with wrong password, server returns unauthorized</span><span class="delimiter">'</span></span>
-                request {
-                    headers endpoint.headersMap
-                    jsonBody JsonOutput.toJson(m)
-                }
-                response {
-                    statusCode resp.status
-                }
-            }
-        }
-
-        <span class="key">then</span>:
-        noExceptionThrown()
-    }
-
-}</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="sample-api-documentation">Sample API Documentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Using the Asciidoctor Gradle plugin is easy to transform the generated API into Documentation in HTML5, PDF or epub.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://grails.github.io/groovy-rest-doc/sample/">Example of the Generated Docs</a></p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/grails/groovy-rest-doc/tree/master/examples/grails-docs-app/">Sample Grails 3 App Using Groovy Rest Docs</a></p>
-</div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Required</th>
+<th class="tableblock halign-left valign-top">Schema</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JSON</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">YES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Plain text password</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-13 17:17:00 UTC
+Last updated 2017-08-13 17:22:52 UTC
 </div>
 </div>
 </body>
