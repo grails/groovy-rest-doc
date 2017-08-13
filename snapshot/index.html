@@ -526,7 +526,7 @@ table.CodeRay td.code>pre{padding:0}
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Groovy REST Docs helps you to document REST APis. It helps you generate Asciidoctor snippets to document your API by using an Groovy
+<p>Groovy REST Doc helps you to document REST APis. It helps you generate <a href="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">Asciidoc</a> snippets to document your API by using an Groovy
 DSL.</p>
 </div>
 </div>
@@ -540,8 +540,6 @@ DSL.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy">repositories {
-    mavenLocal()
-    maven { url <span class="string"><span class="delimiter">&quot;</span><span class="content">https://repo.grails.org/grails/core</span><span class="delimiter">&quot;</span></span> }
     maven { url <span class="string"><span class="delimiter">'</span><span class="content">http://dl.bintray.com/sdelamo/libs</span><span class="delimiter">'</span></span> }
 }</code></pre>
 </div>
@@ -557,6 +555,31 @@ DSL.</p>
 <div class="sect1">
 <h2 id="usage">Usage</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In order to document your REST endpoint you need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Declare your endpoints using classes extending <code>org.grails.restdoc.RestEndpoint</code></p>
+</li>
+<li>
+<p>Use those endpoint declarations in your functional tests. While you test your API, you generate documenation.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The next code snipeets display Grails 3 functional tests. However, You can use groovy-rest-doc with any framework.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The first step is to create classes to describe the endpoint under test. Extend <code>org.grails.restdoc.RestEndpoint</code></p>
 </div>
@@ -607,7 +630,7 @@ DSL.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Then, you instantiate <code>RestDoc</code> and call the <code>doc</code> method as illustrated in the next functional test.</p>
+<p>Then, you instantiate <code>RestDoc</code> and call the <code>doc</code> method as illustrated in the next Grails 3 functional test.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -702,13 +725,37 @@ DSL.</p>
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>For any endpoin understand you can document different interactions ( successful calls, calls returning errors).</p>
+</div>
+<div class="paragraph">
+<p>When you run your tests, <a href="http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/">Asciidoc</a> snippets which describe your API
+are generated at <code>src/docs/asciidoc/generated</code>.</p>
+</div>
+<div class="paragraph">
+<p>The file <code>src/docs/asciidoc/generated/index.adoc</code> lists every endpoint documented in your tests.</p>
+</div>
+<div class="paragraph">
+<p>You can change the folder where the snippets get generated at:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">RestDoc restDoc = <span class="keyword">new</span> RestDoc(endpoint)
+restDoc.generatedSnippetsPath = <span class="string"><span class="delimiter">'</span><span class="content">build/generated</span><span class="delimiter">'</span></span>
+restDoc.doc {
+...
+..
+.
+}</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="sample-api-documentation">Sample API Documentation</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using the Asciidoctor Gradle plugin is easy to transform the generated API into Documentation in HTML5, PDF or epub.</p>
+<p>Using the asciidoctor gradle plugin[Asciidoctor Gradle plugin] is easy to transform the generated API into Documentation in HTML5, PDF or epub.</p>
 </div>
 <div class="paragraph">
 <p><a href="https://grails.github.io/groovy-rest-doc/sample/">Example of the Generated Docs</a></p>
@@ -721,7 +768,7 @@ DSL.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-08-13 17:26:53 UTC
+Last updated 2017-08-13 17:41:18 UTC
 </div>
 </div>
 </body>
