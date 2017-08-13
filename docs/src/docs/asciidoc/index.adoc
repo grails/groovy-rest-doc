@@ -16,7 +16,7 @@ repositories {
 
 Add a Gradle dependency:
 
-`testCompile 'org.grails:rest-docs:0.2'`
+`testCompile 'org.grails:rest-doc:0.2'`
 
 == Usage
 
