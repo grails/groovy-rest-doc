@@ -2,3 +2,5 @@
 .DS_Store
 .gradle
 .idea
+build
+examples/grails-docs-app/src/docs/asciidoc/generated

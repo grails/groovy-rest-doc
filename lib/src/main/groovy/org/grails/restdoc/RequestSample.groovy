@@ -34,8 +34,8 @@ class RequestSample {
     String endpointAsCurRequest(RestEndpoint endpoint, String serverUrl) {
         StringBuffer sb = new StringBuffer()
         sb.append('curl ')
-        if ( endpoint.httpVerb() != HttpVerb.GET ) {
-            sb.append("-X \"${endpoint.httpVerb() as String}\" ")
+        if ( endpoint.httpVerb != HttpVerb.GET ) {
+            sb.append("-X \"${endpoint.httpVerb as String}\" ")
         }
         sb.append("\"${serverUrl}${endpoint.path}")
         if ( params ) {
