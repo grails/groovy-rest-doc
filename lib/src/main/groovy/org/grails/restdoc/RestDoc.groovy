@@ -108,9 +108,9 @@ class RestDoc {
 
     private File createFile(String endpoint, String extension) {
         String path = endpointPath(endpoint)
-        File folder = new File("${generatedSnippetsPath}${path}".toLowerCase())
+        File folder = new File("${snippetsPath()}${path}".toLowerCase())
         folder.mkdirs()
-        File f = new File("${generatedSnippetsPath}${endpoint}_${extension}.adoc".toLowerCase())
+        File f = new File("${snippetsPath()}${endpoint}_${extension}.adoc".toLowerCase())
         f.createNewFile()
         f
     }
@@ -176,7 +176,7 @@ include::${asciidocFileNameWithoutPathAndSuffix(endpoint, method, 'urlparams')}.
 
         String path = endpointPath(endpoint)
         boolean isHeaderPrinted = false
-        File folder = new File("${generatedSnippetsPath}${path}".toLowerCase())
+        File folder = new File("${snippetsPath()}${path}".toLowerCase())
         for ( File file : folder.listFiles() ) {
             String fullPath = "${file.absolutePath}${file.name}"
             if ( fullPath.contains('sample_') && fullPath.contains(endpoint) && fullPath.contains(method)) {
@@ -195,7 +195,7 @@ include::${asciidocFileNameWithoutPathAndSuffix(endpoint, method, 'urlparams')}.
         f.text = text
 
 
-        File apiFile = new File("${generatedSnippetsPath}/index.adoc")
+        File apiFile = new File("${snippetsPath()}/index.adoc")
         String pathWithoutFile = apiFile.absolutePath.replaceAll('/index.adoc', '')
         if ( !apiFile.exists() ) {
             apiFile.createNewFile()
@@ -206,7 +206,7 @@ include::${asciidocFileNameWithoutPathAndSuffix(endpoint, method, 'urlparams')}.
         String apiFileText = apiFile.text
         apiFileText = apiFileText.replaceAll("\n:leveloffset: -1\n", '')
         if ( !apiFileText.contains(f.name) ) {
-            String filename = f.absolutePath.replaceAll(pathWithoutFile, '').replaceAll("${generatedSnippetsPath}", '')
+            String filename = f.absolutePath.replaceAll(pathWithoutFile, '').replaceAll("${snippetsPath()}", '')
             filename = removeFirstCharIfEqualsTo(filename, '/' as char)
             apiFileText += "\n\ninclude::${filename}[]\n\n"
         }
@@ -220,5 +220,9 @@ include::${asciidocFileNameWithoutPathAndSuffix(endpoint, method, 'urlparams')}.
             return str.substring(1)
         }
         str
+    }
+
+    String snippetsPath() {
+        generatedSnippetsPath
     }
 }
