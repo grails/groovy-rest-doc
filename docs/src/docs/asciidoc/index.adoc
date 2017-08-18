@@ -41,7 +41,7 @@ Then, you instantiate `RestDoc` and call the `doc` method as illustrated in the 
 include::../../../../examples/grails-docs-app/src/integration-test/groovy/demo/ApiLoginSpec.groovy[]
 ----
 
-For any endpoin understand you can document different interactions ( successful calls, calls returning errors).
+For any endpoint understand you can document different interactions ( successful calls, calls returning errors).
 
 When you run your tests, http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/[Asciidoc] snippets which describe your API
 are generated at `src/docs/asciidoc/generated`.
